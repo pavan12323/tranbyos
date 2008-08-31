@@ -1,6 +1,18 @@
+; File: start.asm
 ; Author: Steve Tranby
 ; Description: An operating system needs to perform some functions in assembly code to work. This file does that.
 ; Special Thanks to: 
+;
+;
+
+; Using NASM
+
+; Utilize 32-bit x86
+[BITS 32]
+
+
+
+
 
 ; This is the kernel's entry point. We could either call main here,
 ; or we can use this to setup the stack or other nice stuff, like
@@ -482,14 +494,14 @@ irq13:
     push byte 45
     jmp irq_common_stub
 
-; 46: IRQ14
+; 46: IRQ14 (IDE Primary Controller)
 irq14:
     cli
     push byte 0
     push byte 46
     jmp irq_common_stub
 
-; 47: IRQ15
+; 47: IRQ15 (IDE Secondary Controller)
 irq15:
     cli
     push byte 0
