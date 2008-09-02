@@ -2,7 +2,9 @@
 #include <hd.h>
 
 
-
+int wait_busy(void) {
+	while((inb(HD_ST) & HD_ST_BSY)) ;
+}
 
 int is_ready(void) {
 	if((inb(HD_ST)&(HD_ST_BSY|HD_ST_DRQ))==0) return 1;
@@ -98,7 +100,7 @@ static void hd_out(int drive, int sc, int sn, int head, int cyl, int cmd)
 
 void hd_print_status(void)
 {
-    uint8 status = inb(0x1F7);
+    uint8 status = inb(0x3F6); // alternate status port
 
     uint8 status_execmd = status & 0x80; // 1000 0000
     uint8 status_drvrdy = status & 0x40; // 0100 0000

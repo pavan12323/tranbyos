@@ -126,6 +126,27 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	//reset_devices();
 	
 	
+	// wait while busy
+	while((inb(HD_ST)&HD_ST_BSY));
+	
+	// 
+	outb(0x1F2, 0x01);
+	outb(0x1F3, 0x01);
+	outb(0x1F4, 0x00);
+	outb(0x1F5, 0x00);
+	outb(0x1F6, 0xA0);	
+	
+	// wait until ready
+	while(!(inb(HD_ST)&HD_ST_RDY));
+	
+	// write to command register
+	outb(0x1F7, 0x30);
+	
+	// wait until DRQ is set
+	while(!(inb(HD_ST)&HD_ST_DRQ));
+	
+	
+	
 	// Detect if Controller is present
 	/*
 	outb(0x1f3, 0x8f);
@@ -193,6 +214,7 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	
 	*/
 	
+	/*
 	// -- Check HD w/Identify
 	int status;
 	
@@ -286,6 +308,7 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	puts(", Sectors : ");
 	printInt(data[6]);
 	putch('\n');
+	*/
 	
 	//------
 	

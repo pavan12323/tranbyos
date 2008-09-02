@@ -57,9 +57,7 @@ mboot:
     dd end
     dd start
 
-; This is an endless loop here. Make a note of this: Later on, we
-; will insert an 'extern _main', followed by 'call _main', right
-; before the 'jmp $'.
+; call our main() function 
 stublet:      
     ;call _main 	; non-elf gcc puts _ in front of function names    	
 	push eax
@@ -93,10 +91,7 @@ idt_load:
     ret
 
 
-; In just a few pages in this tutorial, we will add our Interrupt
-; Service Routines (ISRs) right here!
-; In just a few pages in this tutorial, we will add our Interrupt
-; Service Routines (ISRs) right here!
+; Interrupt Service Routines
 global isr0
 global isr1
 global isr2
@@ -542,7 +537,7 @@ irq_common_stub:
 ; downwards, so we declare the size of the data before declaring
 ; the identifier '_sys_stack'
 SECTION .bss
-    resb 8192               ; This reserves 8KBytes of memory here
+    resb 8192               ; This reserves 8KBytes of memory here for the stack
 _sys_stack:
 	resb 1024
 _sys_heap:
