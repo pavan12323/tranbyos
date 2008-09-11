@@ -88,10 +88,7 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	
     // -- BEG HARD DISK ACCESS TESTING ---
     
-    word data[512], data2[512];
-    for(i=0;i<512;++i) data[i]=0x5A;
-    ata_pio_write_w(0,0,1,data,1);
-    ata_pio_read_w(0,0,1,data2,1);
+    ata_soft_reset();
     
     if(ata_controller_present(0)){
 		puts("\nController 0 EXISTS");
@@ -100,9 +97,21 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	}	
 	
     if(ata_controller_present(1)){
-		puts("\nController 1 EXISTS");
+		puts(" Controller 1 EXISTS");
 	} else {
-		puts("\nController 1 NOT EXIST");
+		puts(" Controller 1 NOT EXIST");
+	}	
+	
+	if(ata_drive_present(0, 0)){
+		puts("\nController 0 Drive 0 EXISTS");
+	} else {
+		puts("\nController 0 Drive 0 NOT EXIST");
+	}	
+	
+    if(ata_drive_present(0, 1)){
+		puts(" Controller 0 Drive 1 EXISTS");
+	} else {
+		puts(" Controller 0 Drive 1 NOT EXIST");
 	}	
 	
     if(ata_drive_present(1, 0)){
@@ -112,23 +121,26 @@ int _main(multiboot_info_t* mbd, uint32 magic)
 	}	
 	
     if(ata_drive_present(1,1)){
-		puts("\nController 1 Drive 1 EXISTS");
+		puts(" Controller 1 Drive 1 EXISTS");
 	} else {
-		puts("\nController 1 Drive 1 NOT EXIST");
+		puts(" Controller 1 Drive 1 NOT EXIST");
 	}	
+	
+	word data[512], data2[512];
+    for(i=0;i<512;++i) data[i]=0x5A;
+    ata_pio_write_w(0,0,1,data,1);
+    ata_pio_read_w(0,0,1,data2,1);
 	
     getch();
     // -- END HARD DISK ACCESS TESTING ---
 
     
     	int * p = 0;
-    	puts("The address of p is: ");
-    	printInt((int)&p);
-    	putch('\n');
+    	puts("\nThe address of p is: ");
+    	printInt((int)&p);    	
     	// DEBUG::Testing heap code
-    	puts("Heap Magic: ");
-    	print_heap_magic();
-    	putch('\n');
+    	puts("\nHeap Magic: ");
+    	print_heap_magic();    	
     	
     	byte *t = kmalloc(4);
     	byte *s = kmalloc(8);
@@ -137,7 +149,7 @@ int _main(multiboot_info_t* mbd, uint32 magic)
     		s[i*2] = i*2;
     		s[i*2+1] = i*2+1;
     	}
-    	putch('\n');
+    	puts(" -- ");
     	for(i=0; i<4; ++i) {
     		printInt((int)t);
     		putch(':');
@@ -152,9 +164,9 @@ int _main(multiboot_info_t* mbd, uint32 magic)
     		putch('\n');
     	}
         
-    puts("\nSize of RAM(Lower) = ");
+    puts("\nSize of RAM Lower=");
     printInt((int)mbd->mem_lower * 1024);
-    puts("\nSize of RAM(Upper) = ");
+    puts(" Upper=");
     printInt((int)mbd->mem_upper * 1024);
     // print out some memory
     putch('\n');
@@ -172,7 +184,7 @@ int _main(multiboot_info_t* mbd, uint32 magic)
     
     //
     settextcolor(0x0f, 0x00);
-    puts("\nStarting Infinite Loop!\n");
+    puts("\nStarting Infinite Loop!");
     for (;;)
         ;
     return 0;
