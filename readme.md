@@ -1,18 +1,20 @@
-                                                                                   
-_/_/_/_/_/                                _/                    _/_/      _/_/_/   
-   _/      _/  _/_/    _/_/_/  _/_/_/    _/_/_/    _/    _/  _/    _/  _/          
-  _/      _/_/      _/    _/  _/    _/  _/    _/  _/    _/  _/    _/    _/_/       
- _/      _/        _/    _/  _/    _/  _/    _/  _/    _/  _/    _/        _/      
-_/      _/          _/_/_/  _/    _/  _/_/_/      _/_/_/    _/_/    _/_/_/         
-                                                     _/                            
-                                                _/_/         
-===========
+                                                                                
+    _/_/_/_/_/                                _/                    _/_/      _/_/_/   
+       _/      _/  _/_/    _/_/_/  _/_/_/    _/_/_/    _/    _/  _/    _/  _/          
+      _/      _/_/      _/    _/  _/    _/  _/    _/  _/    _/  _/    _/    _/_/       
+     _/      _/        _/    _/  _/    _/  _/    _/  _/    _/  _/    _/        _/      
+    _/      _/          _/_/_/  _/    _/  _/_/_/      _/_/_/    _/_/    _/_/_/         
+                                                         _/                            
+                                                    _/_/         
+    
+
 Tranby OS 
 ===========
 
 Developing x86 simple operating system to learn the fundamentals of the boot process, device interaction, among other things ...
 
--------------------
+
+
 Setup Environment
 -------------------
 
@@ -25,7 +27,7 @@ Most linux distros will have binutils, make, gcc, and ld already installed.
  - nasm (assembler)
  - qemu (emulator)
 
---------------------
+
 Build and Run
 --------------------
 
@@ -39,7 +41,7 @@ make disk
 make run 
 - Loads QEMU with GRUB disk image and hard disk images
 
----------------------
+
 OS Details
 ---------------------
 
@@ -61,11 +63,14 @@ Currently reads and writes data successfully.
 
 _I'll write more as I have time to work on this_
 
-## Extensive How-To In Progress ##
+
+Extensive How-To In Progress
+------------------------------------------
 
 https://docs.google.com/document/edit?id=17-3cOyXNgPmjh05qogS-h6hKn6WDllWs0xOVhEWvj9I&hl=en
 
-## Resources ##
+Resources
+------------------------------------------
 
 - http://www.osdever.net/tutorials/view/getting-started-in-os-development
 - http://mikeos.berlios.de/
@@ -75,17 +80,16 @@ https://docs.google.com/document/edit?id=17-3cOyXNgPmjh05qogS-h6hKn6WDllWs0xOVhE
 
 
 OLD README
-----------
+------------------------------------------
 
 GDT [Global Descriptor Table]
 
 Multitasking:
 http://www.osdever.net/tutorials/multitasking.php
 
-
-
 Tips/Problems
-=============
+------------------------------------------
+
 Prob: 
   undefined reference to '__stack_chk_fail'
 Desc: 
@@ -93,8 +97,10 @@ Desc:
   overflow, or the code cannot be statically proven to be safe to such a bug.
 Soln: 
   add -fno-stack-protector to the CFLAGS as an argument to gcc
-  <http://hackinglinux.blogspot.com/2006/11/resolving-stackchkfail-error.html>
+  http://hackinglinux.blogspot.com/2006/11/resolving-stackchkfail-error.html
+
 -------------
+
 Prob:
   
 Desc:
