@@ -72,8 +72,8 @@ Extensive How-To In Progress
 Resources
 ------------------------------------------
 
-- [http://www.osdever.net/tutorials/view/getting-started-in-os-development)]
-- http://mikeos.berlios.de/
+- [http://www.osdever.net/tutorials/view/getting-started-in-os-development](http://www.osdever.net/tutorials/view/getting-started-in-os-development)
+- [http://mikeos.berlios.de/](http://mikeos.berlios.de/)
 - http://www.jamesmolloy.co.uk/tutorial_html/index.html
 - http://wiki.osdev.org/Main_Page
 - http://wiki.osdev.org/Bare_bones
@@ -99,7 +99,7 @@ Desc:
 
 Soln: 
   add -fno-stack-protector to the CFLAGS as an argument to gcc
-  http://hackinglinux.blogspot.com/2006/11/resolving-stackchkfail-error.html
+  [http://hackinglinux.blogspot.com/2006/11/resolving-stackchkfail-error.html](http://hackinglinux.blogspot.com/2006/11/resolving-stackchkfail-error.html)
 
 -------------
 
